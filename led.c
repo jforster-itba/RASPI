@@ -100,7 +100,7 @@ char readValue(char* dir_file){		// se usa como readValue == '0';
 int main(void){
 	//para exportar writeFile(export_dir , led[n]);
 	//para cambiar dir writeFile(dir_led, "out"/"in")
-	char c;
+	int c;
 	while( (c = getchar()) != 'q' && (c != 'Q') ){
 		c -= '0';
 		printf("Exportamos el pin %s:", led[c]);
