@@ -102,23 +102,24 @@ int main(void){
 	//para cambiar dir writeFile(dir_led, "out"/"in")
 	char c;
 	while( (c = getchar()) != 'q' && (c != 'Q') ){
-		printf("Exportamos el pin %s:", led[2]);
-		writeFile(export_led, led[2]);	//exportamos el led2
+		c -= '0';
+		printf("Exportamos el pin %s:", led[c]);
+		writeFile(export_led, led[c]);	//exportamos el led2
 
 		printf("\n");
 
-		printf("Seteamos la direccion del pin %s en OUT: ", led[2]);
-		writeFile(direction_led[2], "out");	//seteo direction del led2
+		printf("Seteamos la direccion del pin %s en OUT: ", led[c]);
+		writeFile(direction_led[c], "out");	//seteo direction del led2
 
 		printf("\n");
 
-		char v = readValue(value_led[2]);
-		printf("El valor actual del pin %s es: %c", led[2], v);
+		char v = readValue(value_led[c]);
+		printf("El valor actual del pin %s es: %c", led[c], v);
 
 		printf("\n");
 
-		printf("Seteamos el valor del pin %s en 1: ", led[2]);
-		writeFile(value_led[2], "1");	//seteo value del led2
+		printf("Seteamos el valor del pin %s en 1: ", led[c]);
+		writeFile(value_led[c], "1");	//seteo value del led2
 
 		printf("\n");
 	}
