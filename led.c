@@ -102,7 +102,7 @@ int main(void){
 	//para exportar writeFile(export_dir , led[n]);
 	//para cambiar dir writeFile(dir_led, "out"/"in")
 	int c;
-	while( (c = getchar()) != 'q' && (c != 'Q') ){
+	while( (c = getchar()) != 'q' && (c != 'Q') && (c != '\n') ){
 		c -= '0';
 
 		printf("Exportamos el pin %s:", led[c]);
