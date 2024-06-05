@@ -58,26 +58,27 @@ void writeFile(char* dir_file, char* str){	// dir_file es donde queremos guardar
 	FILE * file;
 	int flag;
 
+	sleep(1);
 	if((file = fopen(dir_file, "w")) == NULL){
 		printf("No se pudo abrir el archivo %s", dir_file);
 		exit(1);
 	}
 
 	sleep(1);
-
 	if((flag = fputs(str, file)) == -1){
 		printf("No se pudo escribir el archivo %s", dir_file);
 		exit(1);
 	}
 
 	sleep(1);
-
 	fclose(file);
 }
 
 char readValue(char* dir_file){		// se usa como readValue == '0';
 	FILE * file;
 	char value;
+
+	sleep(1);
 
 	if((file = fopen(dir_file, "r")) == NULL){
 		printf("No se pudo abrir el archivo %s", dir_file);
@@ -100,9 +101,10 @@ char readValue(char* dir_file){		// se usa como readValue == '0';
 int main(void){
 	//para exportar writeFile(export_dir , led[n]);
 	//para cambiar dir writeFile(dir_led, "out"/"in")
-	char c;
-	while( (c = getchar()) != 'q' && (c != 'Q') ){
+	int c;
+	while( (c = getchar()) != 'q' && (c != 'Q') && (c != '\n') ){
 		c -= '0';
+
 		printf("Exportamos el pin %s:", led[c]);
 		writeFile(export_led, led[c]);	//exportamos el led2
 
