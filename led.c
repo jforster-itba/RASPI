@@ -33,26 +33,7 @@ char* direction_led[8] = {
 	"/sys/class/gpio/gpio27/direction",
 };
 
-/*
-void exportarPin(char* pin){
-	FILE * exportar;
-	int flag;
 
-	exportar = fopen("sys/class/gpio/export","w");
-	// chequeo si se cargo el archivo export a exportar_pin
-
-	if(exportar == NULL){
-		//error
-	}
-
-	flag = fputs(pin, exportar);
-	if (flag == -1){
-		// error
-	}
-
-	fclose(exportar);
-}
-*/
 
 void writeFile(char* dir_file, char* str){	// dir_file es donde queremos guardar el string str
 	FILE * file;
@@ -102,30 +83,62 @@ int main(void){
 	//para exportar writeFile(export_dir , led[n]);
 	//para cambiar dir writeFile(dir_led, "out"/"in")
 	int c;
-	while( (c = getchar()) != 'q' && (c != 'Q') && (c != '\n') ){
-		c -= '0';
-
-		printf("Exportamos el pin %s:", led[c]);
-		writeFile(export_led, led[c]);	//exportamos el led2
-
-		printf("\n");
-
-		printf("Seteamos la direccion del pin %s en OUT: ", led[c]);
-		writeFile(direction_led[c], "out");	//seteo direction del led2
-
-		printf("\n");
-
-		char v = readValue(value_led[c]);
-		printf("El valor actual del pin %s es: %c", led[c], v);
-
-		printf("\n");
-
-		printf("Seteamos el valor del pin %s en 1: ", led[c]);
-		writeFile(value_led[c], "1");	//seteo value del led2
-
-		printf("\n");
+	for(int i=0,i<7,i++){
+			printf("Exportamos el pin %s:", led[i]);
+			writeFile(export_led, led[i]);
+			printf("Seteamos la direccion del pin %s en OUT: ", led[c]);
+			writeFile(direction_led[c], "out");	//seteo direction del led2
 	}
+	while(exit!=1){
+		printf("Indique la instrucción a realizar: \n");
 
+		while( (c = getchar()) != 'q' && (c != 'Q') && (c != '\n') ){
+				//exportamos el led2
+			if('0'<c && c<'7'){
+					c-='0';
+				if(readValue(led[c])==0){
+					writeFile(value_led[c], "1");
+				}
+				else if(readValue(led[c])==1){
+					writeFile(value_led[c], "0");
+				}
+			}
+			else if{
+			switch(c){
+				case 't':
+				case 'T':
+					for(int i=0;i<7;i++){
+						if(readValue(led[i])==0)
+							writeFile(value_led[i], "1");
+						else if(verEstado(led[i])==1)
+							writeFile(value_led[i], "0");
+					}
+
+				case 'c':
+				case 'C':
+					for(int i=0;i<7;i++){
+						writeFile(value_led[i], "1");
+					}
+					break;
+
+				case 's':
+				case 'S':
+					for(int i=0;i<7;i++){
+						writeFile(value_led[i], "1");
+					}
+					break;
+
+				case 'q'||'Q':
+					printf("programa terminado");
+					return 0;
+
+				else
+						printf("nada jeje");
+					}
+
+			printf("\n");
+		}
+	}
 	return 0;
 }
 
