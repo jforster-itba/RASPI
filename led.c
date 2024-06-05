@@ -6,30 +6,48 @@
  */
 //exportar un pin
 
-char * pin17 = "17";
-char * pin4 = "4";
-char * pin18 = "18";
-char * pin23 = "23";
-char * pin24 = "24";
-char * pin25 = "25";
-char * pin22 = "22";
-char * pin27 = "27";
+char* led[8] = { "17", "4", "18", "23", "24", "25", "22", "27" }
+/*
+void exportarPin(char* pin){
+	FILE * exportar;
+	int flag;
 
-
-int export_pin(char* pin){
-	FILE * exportar_pin;
-	int write_flag;
-
-	exportar_pin = fopen("sys/class/gpio/export","w");
+	exportar = fopen("sys/class/gpio/export","w");
 	// chequeo si se cargo el archivo export a exportar_pin
 
-	if(exportar_pin == NULL){
+	if(exportar == NULL){
 		//error
 	}
 
-	write_flag = fputs(pin, exportar_pin);
-	if (write_flag == -1){
+	flag = fputs(pin, exportar);
+	if (flag == -1){
 		// error
 	}
 
+	fclose(exportar);
 }
+*/
+
+void writeFile(char* dir_file, char* str){
+	FILE * file;
+	int flag;
+
+	if((file = fopen(dir_file, "w")) == NULL){
+		//error
+	}
+
+	if((flag = fputs(str, file)) == -1){
+		//error
+	}
+
+	fclose(file);
+}
+
+int readValue(){
+	FILE * file;
+	int value;
+
+
+}
+
+
