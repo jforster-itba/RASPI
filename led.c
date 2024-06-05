@@ -5,6 +5,8 @@
  *      Author: dante
  */
 //exportar un pin
+#include <stdio.h>
+#include <unistd.h>
 
 char* led[8] = { "17", "4", "18", "23", "24", "25", "22", "27" };
 char* export_led = "/sys/class/gpio/export";
@@ -60,10 +62,14 @@ void writeFile(char* dir_file, char* str){	// dir_file es donde queremos guardar
 		exit(1);
 	}
 
+	sleep(1);
+
 	if((flag = fputs(str, file)) == -1){
 		printf("No se pudo escribir el archivo %s", dir_file);
 		exit(1);
 	}
+
+	sleep(1);
 
 	fclose(file);
 }
@@ -77,10 +83,14 @@ char readValue(char* dir_file){		// se usa como readValue == '0';
 		exit(1);
 	}
 
+	sleep(1);
+
 	if((value = fgetc(file)) == EOF){
 		printf("No se pudo escribir el archivo %s", dir_file);
 		exit(1);
 	}
+
+	sleep(1);
 
 	fclose(file);
 	return value;
