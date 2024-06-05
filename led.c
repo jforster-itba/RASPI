@@ -9,10 +9,11 @@
 char * pin17 = "17";
 char * pin4 = "4";
 char * pin18 = "18";
-char * pin17 = "23";
-char * pin17 = "24";
-char * pin17 = "25";
-char * pin17 = "22";
+char * pin23 = "23";
+char * pin24 = "24";
+char * pin25 = "25";
+char * pin22 = "22";
+char * pin27 = "27";
 
 
 int export_pin(char* pin){
