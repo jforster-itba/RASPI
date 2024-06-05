@@ -7,6 +7,7 @@
 //exportar un pin
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 char* led[8] = { "17", "4", "18", "23", "24", "25", "22", "27" };
 char* export_led = "/sys/class/gpio/export";
