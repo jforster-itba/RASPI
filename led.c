@@ -40,6 +40,7 @@ int main(void){
 	//para cambiar dir writeFile(dir_led, "out"/"in")
 	int i;
 	char exit;
+	int c;
 
 	// exportamos y ponenmos todos los pines como OUT
 	for(i=0,i<7,i++){
@@ -51,7 +52,6 @@ int main(void){
 
 	while(exit!=1){
 
-		int c;
 		printf("Indique la instrucción a realizar: \n");
 
 		while( (c = getchar()) != '\n' ){
