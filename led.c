@@ -54,7 +54,7 @@ int main(void){
 		int c;
 		printf("Indique la instrucción a realizar: \n");
 
-		while( (c = getchar()) && c != '\n' ){
+		while( (c = getchar()) != '\n' ){
 				//exportamos el led2
 			if('0' < c && c < '7'){
 					c-='0';
