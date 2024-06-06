@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+void writeFile(char* dir_file, char* str);
+char readValue(char* dir_file);
 
 char* led[8] = { "17", "4", "18", "23", "24", "25", "22", "27" };
 char* export_led = "/sys/class/gpio/export";
@@ -33,7 +35,78 @@ char* direction_led[8] = {
 	"/sys/class/gpio/gpio27/direction",
 };
 
+int main(void){
+	//para exportar writeFile(export_dir , led[n]);
+	//para cambiar dir writeFile(dir_led, "out"/"in")
+	int c;
+	int i;
+	char exit;
 
+	// exportamos y ponenmos todos los pines como OUT
+	for(i=0,i<7,i++){
+			printf("Exportamos el pin %s:", led[i]);
+			writeFile(export_led, led[i]);
+			printf("Seteamos la direccion del pin %s en OUT: ", led[i]);
+			writeFile(direction_led[i], "out");	//seteo direction del led2
+	}
+
+	while(exit!=1){
+
+		printf("Indique la instrucción a realizar: \n");
+
+		while( (c = getchar()) != 'q' && (c != 'Q') && (c != '\n') ){
+				//exportamos el led2
+			if('0' < c && c < '7'){
+					c-='0';
+				if(readValue(led[c])==0){
+					writeFile(value_led[c], "1");
+				}
+				else if(readValue(led[c])==1){
+					writeFile(value_led[c], "0");
+				}
+			}
+
+			else if{
+
+				switch(c){
+					case 't':
+					case 'T':
+						for(i=0;i<7;i++){
+							if(readValue(led[i])==0)
+								writeFile(value_led[i], "1");
+							else if(readValue(led[i])==1)
+								writeFile(value_led[i], "0");
+						}
+
+					case 'c':
+					case 'C':
+						for(i=0;i<7;i++){
+							writeFile(value_led[i], "1");
+						}
+					break;
+
+					case 's':
+					case 'S':
+						for(i=0;i<7;i++){
+							writeFile(value_led[i], "0");
+						}
+					break;
+
+					case 'q':
+					case 'Q':
+						printf("programa terminado");
+						return 0;
+					break;
+
+					else
+						printf("nada jeje");
+					break;
+				}
+
+			}
+		}
+	}
+}
 
 void writeFile(char* dir_file, char* str){	// dir_file es donde queremos guardar el string str
 	FILE * file;
@@ -77,70 +150,6 @@ char readValue(char* dir_file){		// se usa como readValue == '0';
 
 	fclose(file);
 	return value;
-}
-
-int main(void){
-	//para exportar writeFile(export_dir , led[n]);
-	//para cambiar dir writeFile(dir_led, "out"/"in")
-	int c;
-	int i;
-	for(i=0,i<7,i++){
-			printf("Exportamos el pin %s:", led[i]);
-			writeFile(export_led, led[i]);
-			printf("Seteamos la direccion del pin %s en OUT: ", led[c]);
-			writeFile(direction_led[c], "out");	//seteo direction del led2
-	}
-	while(exit!=1){
-		printf("Indique la instrucción a realizar: \n");
-
-		while( (c = getchar()) != 'q' && (c != 'Q') && (c != '\n') ){
-				//exportamos el led2
-			if('0' < c && c < '7'){
-					c-='0';
-				if(readValue(led[c])==0){
-					writeFile(value_led[c], "1");
-				}
-				else if(readValue(led[c])==1){
-					writeFile(value_led[c], "0");
-				}
-			}
-			else if{
-			switch(c){
-				case 't':
-				case 'T':
-					for(i=0;i<7;i++){
-						if(readValue(led[i])==0)
-							writeFile(value_led[i], "1");
-						else if(readValue(led[i])==1)
-							writeFile(value_led[i], "0");
-					}
-
-				case 'c':
-				case 'C':
-					for(i=0;i<7;i++){
-						writeFile(value_led[i], "1");
-					}
-					break;
-
-				case 's':
-				case 'S':
-					for(i=0;i<7;i++){
-						writeFile(value_led[i], "0");
-					}
-					break;
-
-				case 'q':
-				case 'Q':
-					printf("programa terminado");
-					return 0;
-
-				else
-					printf("nada jeje");
-					break;
-					}
-
-		}
-	}
 }
 
 
