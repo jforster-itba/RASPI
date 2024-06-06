@@ -38,7 +38,6 @@ char* direction_led[8] = {
 int main(void){
 	//para exportar writeFile(export_dir , led[n]);
 	//para cambiar dir writeFile(dir_led, "out"/"in")
-	int c;
 	int i;
 	char exit;
 
@@ -52,9 +51,10 @@ int main(void){
 
 	while(exit!=1){
 
+		int c;
 		printf("Indique la instrucción a realizar: \n");
 
-		while( (c = getchar()) != 'q' && (c != 'Q') && (c != '\n') ){
+		while( (c = getchar()) && c != '\n' ){
 				//exportamos el led2
 			if('0' < c && c < '7'){
 					c-='0';
@@ -95,7 +95,8 @@ int main(void){
 					case 'q':
 					case 'Q':
 						printf("programa terminado");
-						return 0;
+
+						exit = 1;
 					break;
 
 					else
@@ -106,6 +107,8 @@ int main(void){
 			}
 		}
 	}
+
+	return 0;
 }
 
 void writeFile(char* dir_file, char* str){	// dir_file es donde queremos guardar el string str
