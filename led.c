@@ -40,20 +40,21 @@ int main(void){
 	//para exportar writeFile(export_dir , led[n]);
 	//para cambiar dir writeFile(dir_led, "out"/"in")
 	int i;
-	char exit;
+	char f_exit;
 	int c;
 
 	// exportamos y ponenmos todos los pines como OUT
 	for(i=0;i<7;i++){
 
-		printf("Exportamos el pin %s:", led[i]);
+		printf("Exportamos el pin %s:\n", led[i]);
 		writeFile(export_led, led[i]);
-		printf("Seteamos la direccion del pin %s en OUT: ", led[i]);
+		sleep(1);
+		printf("Seteamos la direccion del pin %s en OUT: \n", led[i]);
 		writeFile(direction_led[i], "out");	//seteo direction del led2
 
 	}
 
-	while(exit!=1){
+	while(f_exit!=1){
 
 		printf("Indique la instrucción a realizar: \n");
 
@@ -68,24 +69,26 @@ int main(void){
 				else if(readValue(led[c])==1){
 					writeFile(value_led[c], "0");
 				}
-			}
+				printf("Valor del led %d = %c \n", led[i], readValue(value_led[i]));
 
-			else{
-
+			}else{
 				switch(c){
 					case 't':
 					case 'T':
 						for(i=0;i<7;i++){
-							if(readValue(led[i])==0)
+							if(readValue(led[i])==0){
 								writeFile(value_led[i], "1");
-							else if(readValue(led[i])==1)
+							}
+							else if(readValue(led[i])==1){
 								writeFile(value_led[i], "0");
+							}
+							printf("Valor del led %d = %c \n", led[i], readValue(value_led[i]));
 						}
-
 					case 'c':
 					case 'C':
 						for(i=0;i<7;i++){
 							writeFile(value_led[i], "0");
+							printf("Valor del led %d = %c \n", led[i], readValue(value_led[i]));
 						}
 					break;
 
@@ -93,6 +96,7 @@ int main(void){
 					case 'S':
 						for(i=0;i<7;i++){
 							writeFile(value_led[i], "1");
+							printf("Valor del led %d = %c \n", led[i], readValue(value_led[i]));
 						}
 					break;
 
@@ -100,7 +104,7 @@ int main(void){
 					case 'Q':
 						printf("programa terminado");
 
-						exit = 1;
+						f_exit = 1;
 					break;
 
 					default:
@@ -121,13 +125,13 @@ void writeFile(char* dir_file, char* str){	// dir_file es donde queremos guardar
 
 	sleep(1);
 	if((file = fopen(dir_file, "w")) == NULL){
-		printf("No se pudo abrir el archivo %s", dir_file);
+		printf("No se pudo abrir el archivo %s \n", dir_file);
 		exit(1);
 	}
 
 	sleep(1);
 	if((flag = fputs(str, file)) == -1){
-		printf("No se pudo escribir el archivo %s", dir_file);
+		printf("No se pudo escribir el archivo %s \n", dir_file);
 		exit(1);
 	}
 
@@ -142,14 +146,14 @@ char readValue(char* dir_file){		// se usa como readValue == '0';
 	sleep(1);
 
 	if((file = fopen(dir_file, "r")) == NULL){
-		printf("No se pudo abrir el archivo %s", dir_file);
+		printf("No se pudo abrir el archivo %s \n", dir_file);
 		exit(1);
 	}
 
 	sleep(1);
 
 	if((value = fgetc(file)) == EOF){
-		printf("No se pudo escribir el archivo %s", dir_file);
+		printf("No se pudo escribir el archivo %s \n", dir_file);
 		exit(1);
 	}
 
