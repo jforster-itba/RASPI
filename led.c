@@ -69,7 +69,7 @@ int main(void){
 				else if(readValue(led[c])==1){
 					writeFile(value_led[c], "0");
 				}
-				printf("Valor del led %d = %c \n", led[i], readValue(value_led[i]));
+				printf("Valor del led %s = %c \n", led[i], readValue(value_led[i]));
 
 			}else{
 				switch(c){
@@ -82,13 +82,13 @@ int main(void){
 							else if(readValue(led[i])==1){
 								writeFile(value_led[i], "0");
 							}
-							printf("Valor del led %d = %c \n", led[i], readValue(value_led[i]));
+							printf("Valor del led %s = %c \n", led[i], readValue(value_led[i]));
 						}
 					case 'c':
 					case 'C':
 						for(i=0;i<7;i++){
 							writeFile(value_led[i], "0");
-							printf("Valor del led %d = %c \n", led[i], readValue(value_led[i]));
+							printf("Valor del led %s = %c \n", led[i], readValue(value_led[i]));
 						}
 					break;
 
@@ -96,7 +96,7 @@ int main(void){
 					case 'S':
 						for(i=0;i<7;i++){
 							writeFile(value_led[i], "1");
-							printf("Valor del led %d = %c \n", led[i], readValue(value_led[i]));
+							printf("Valor del led %s = %c \n", led[i], readValue(value_led[i]));
 						}
 					break;
 
