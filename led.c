@@ -69,10 +69,10 @@ int main(void){
 					case 't':
 					case 'T':
 						for(i=0;i<8;i++){
-							if(readValue(led[i])=='0'){
+							if(readValue(value_led[i])=='0'){
 								writeFile(value_led[i], "1");
 							}
-							else if(readValue(led[i])=='1'){
+							else if(readValue(value_led[i])=='1'){
 								writeFile(value_led[i], "0");
 							}
 							printf("Valor del led %s = %c \n", led[i], readValue(value_led[i]));
