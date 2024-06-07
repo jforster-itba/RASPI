@@ -77,6 +77,8 @@ int main(void){
 							}
 							printf("Valor del led %s = %c \n", led[i], readValue(value_led[i]));
 						}
+					break;
+					
 					case 'c':
 					case 'C':
 						for(i=0;i<8;i++){
