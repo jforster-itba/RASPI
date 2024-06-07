@@ -41,7 +41,7 @@ int main(void){
 	//para cambiar dir writeFile(dir_led, "out"/"in")
 	int i;
 	char f_exit;
-	int c;
+	char c;
 
 	// exportamos y ponenmos todos los pines como OUT
 	for(i=0;i<7;i++){
@@ -63,7 +63,7 @@ int main(void){
 			if('0' <= c && c <= '7'){
 				c-='0';
 				writeFile(value_led[c], "1");
-				printf("Valor del led %s = %c \n", led[i], readValue(value_led[i]));
+				printf("Valor del led %s = %c \n", led[c], readValue(value_led[c]));
 			}else{
 				switch(c){
 					case 't':
