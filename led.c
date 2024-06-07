@@ -99,8 +99,8 @@ int main(void){
 						exit = 1;
 					break;
 
-					else
-						printf("nada jeje");
+					default:
+						printf("Ingrese un caracter valido.");
 					break;
 				}
 
