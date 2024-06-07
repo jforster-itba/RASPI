@@ -62,8 +62,8 @@ int main(void){
 			//exportamos el led2
 			if(c >= '0' && c <= '7'){
 				c-='0';
-				writeFile(value_led[c], "1");
-				printf("Valor del led %s = %c \n", led[c], readValue(value_led[c]));
+				writeFile(value_led[(int)c], "1");
+				printf("Valor del led %s = %c \n", led[(int)c], readValue(value_led[(int)c]));
 			}else{
 				switch(c){
 					case 't':
