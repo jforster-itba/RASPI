@@ -60,26 +60,19 @@ int main(void){
 
 		while( (c = getchar()) != '\n' ){
 				//exportamos el led2
-			if('0' < c && c < '7'){
+			if('0' <= c && c <= '7'){
 				c-='0';
-
-				if(readValue(led[c])==0){
-					writeFile(value_led[c], "1");
-				}
-				else if(readValue(led[c])==1){
-					writeFile(value_led[c], "0");
-				}
+				writeFile(value_led[c], "1");
 				printf("Valor del led %s = %c \n", led[i], readValue(value_led[i]));
-
 			}else{
 				switch(c){
 					case 't':
 					case 'T':
 						for(i=0;i<7;i++){
-							if(readValue(led[i])==0){
+							if(readValue(led[i])=='0'){
 								writeFile(value_led[i], "1");
 							}
-							else if(readValue(led[i])==1){
+							else if(readValue(led[i])=='1'){
 								writeFile(value_led[i], "0");
 							}
 							printf("Valor del led %s = %c \n", led[i], readValue(value_led[i]));
