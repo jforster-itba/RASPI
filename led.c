@@ -44,7 +44,7 @@ int main(void){
 	char c;
 
 	// exportamos y ponenmos todos los pines como OUT
-	for(i=0;i<7;i++){
+	for(i=0;i<8;i++){
 
 		printf("Exportamos el pin %s:\n", led[i]);
 		writeFile(export_led, led[i]);
@@ -59,7 +59,7 @@ int main(void){
 		printf("Indique la instrucción a realizar: \n");
 
 		while( (c = getchar()) != '\n' ){
-				//exportamos el led2
+			//exportamos el led2
 			if(c >= '0' && c <= '7'){
 				c-='0';
 				writeFile(value_led[c], "1");
@@ -68,7 +68,7 @@ int main(void){
 				switch(c){
 					case 't':
 					case 'T':
-						for(i=0;i<7;i++){
+						for(i=0;i<8;i++){
 							if(readValue(led[i])=='0'){
 								writeFile(value_led[i], "1");
 							}
@@ -79,7 +79,7 @@ int main(void){
 						}
 					case 'c':
 					case 'C':
-						for(i=0;i<7;i++){
+						for(i=0;i<8;i++){
 							writeFile(value_led[i], "0");
 							printf("Valor del led %s = %c \n", led[i], readValue(value_led[i]));
 						}
@@ -87,7 +87,7 @@ int main(void){
 
 					case 's':
 					case 'S':
-						for(i=0;i<7;i++){
+						for(i=0;i<8;i++){
 							writeFile(value_led[i], "1");
 							printf("Valor del led %s = %c \n", led[i], readValue(value_led[i]));
 						}
