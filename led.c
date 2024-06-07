@@ -60,7 +60,7 @@ int main(void){
 
 		while( (c = getchar()) != '\n' ){
 				//exportamos el led2
-			if('0' <= c && c <= '7'){
+			if(c >= '0' && c <= '7'){
 				c-='0';
 				writeFile(value_led[c], "1");
 				printf("Valor del led %s = %c \n", led[c], readValue(value_led[c]));
