@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+
 void writeFile(char* dir_file, char* str);
 char readValue(char* dir_file);
 
@@ -43,7 +44,7 @@ int main(void){
 	int c;
 
 	// exportamos y ponenmos todos los pines como OUT
-	for(i=0,i<7,i++){
+	for(i=0;i<7;i++){
 			printf("Exportamos el pin %s:", led[i]);
 			writeFile(export_led, led[i]);
 			printf("Seteamos la direccion del pin %s en OUT: ", led[i]);
@@ -66,7 +67,7 @@ int main(void){
 				}
 			}
 
-			else if{
+			else{
 
 				switch(c){
 					case 't':
