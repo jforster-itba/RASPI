@@ -45,10 +45,12 @@ int main(void){
 
 	// exportamos y ponenmos todos los pines como OUT
 	for(i=0;i<7;i++){
-			printf("Exportamos el pin %s:", led[i]);
-			writeFile(export_led, led[i]);
-			printf("Seteamos la direccion del pin %s en OUT: ", led[i]);
-			writeFile(direction_led[i], "out");	//seteo direction del led2
+
+		printf("Exportamos el pin %s:", led[i]);
+		writeFile(export_led, led[i]);
+		printf("Seteamos la direccion del pin %s en OUT: ", led[i]);
+		writeFile(direction_led[i], "out");	//seteo direction del led2
+
 	}
 
 	while(exit!=1){
@@ -58,7 +60,8 @@ int main(void){
 		while( (c = getchar()) != '\n' ){
 				//exportamos el led2
 			if('0' < c && c < '7'){
-					c-='0';
+				c-='0';
+
 				if(readValue(led[c])==0){
 					writeFile(value_led[c], "1");
 				}
