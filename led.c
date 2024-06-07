@@ -82,14 +82,14 @@ int main(void){
 					case 'c':
 					case 'C':
 						for(i=0;i<7;i++){
-							writeFile(value_led[i], "1");
+							writeFile(value_led[i], "0");
 						}
 					break;
 
 					case 's':
 					case 'S':
 						for(i=0;i<7;i++){
-							writeFile(value_led[i], "0");
+							writeFile(value_led[i], "1");
 						}
 					break;
 
